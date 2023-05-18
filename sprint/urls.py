@@ -18,8 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
+from pereval.views import PerevalViewSet
+
+router = SimpleRouter()
+router.register('pereval', PerevalViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pereval.urls')),
 ]
+
+urlpatterns += router.urls
