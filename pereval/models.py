@@ -45,7 +45,7 @@ class PerevalAdded(models.Model):
 class Coords(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
-    height = models.ImageField(blank=True, null=True)
+    height = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.latitude} {self.longitude} {self.height}"
