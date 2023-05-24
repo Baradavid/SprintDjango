@@ -30,3 +30,11 @@ class PerevalAreasSerializer(ModelSerializer):
     class Meta:
         model = PerevalAreas
         fields = '__all__'
+
+
+class PerevalAddedUpdateSerializer(ModelSerializer):
+    class Meta:
+        model = PerevalAdded
+        fields = '__all__'
+        read_only_fields = ['user', ]
+
