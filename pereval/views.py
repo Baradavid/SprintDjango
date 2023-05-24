@@ -1,5 +1,5 @@
 import django_filters
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -7,7 +7,7 @@ from rest_framework import viewsets
 
 from .filters import PerevalFilter
 from .models import PerevalAdded
-from .serializers import PerevalAddedSerializer
+from .serializers import PerevalAddedSerializer, PerevalAddedUpdateSerializer
 
 
 class PerevalViewSet(viewsets.ModelViewSet):
@@ -42,3 +42,18 @@ def getData(request, pk):
     return Response(serializer.data)
 
 
+@api_view(['PATCH'])
+def update_pereval(request, pk):
+    try:
+        pereval = PerevalAdded.objects.get(pk=pk)
+    except PerevalAdded.DoesNotExist:
+        return Response({'state': 0, 'message': 'Pereval not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    if pereval.status != 'new':
+        return Response({'state': 0, 'message': 'Pereval status is not "new"'}, status=status.HTTP_400_BAD_REQUEST)
+
+    serializer = PerevalAddedUpdateSerializer(pereval, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'state': 1}, status=status.HTTP_200_OK)
+    return Response({'state': 0, 'message': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
