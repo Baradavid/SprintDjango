@@ -30,6 +30,20 @@ class PerevalTests(APITestCase):
             'images': [self.img.pk],
             'status': 'new'
         }
+        self.invalid_payload = {
+            'user': '',
+            'beauty_title': '',
+            'title': '',
+            'other_titles': '',
+            'connect': '',
+            'winter_level': '',
+            'summer_level': '',
+            'autumn_level': '',
+            'spring_level': '',
+            'coord_id': '',
+            'images': [],
+            'status': ''
+        }
 
 
 
