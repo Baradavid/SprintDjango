@@ -89,7 +89,7 @@ class PerevalTests(APITestCase):
                                               autumn_level='Test Autumn Level',
                                               coord_id=self.coord,
                                               status='new')
-        url = reverse('update_data', args=[pereval.pk])
+        url = reverse('update_pereval', args=[pereval.pk])
         response = self.client.patch(url, self.valid_update, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['state'], 1)
@@ -107,7 +107,7 @@ class PerevalTests(APITestCase):
                                               autumn_level='Test Autumn Level',
                                               coord_id=self.coord,
                                               status='accepted')
-        url = reverse('update_data', args=[pereval.pk])
+        url = reverse('update_pereval', args=[pereval.pk])
         response = self.client.patch(url, self.valid_update, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data['state'], 0)
