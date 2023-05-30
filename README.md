@@ -24,3 +24,12 @@ ____
 4) Создайте базу данных: python manage.py migrate
 5) Запустите сервер: python manage.py runserver
 ```
+____
+
+### Использование программы:
+```
+1) submitData/ - список перевалов
+2) submitData/create/ - создание нового перевала
+3) submitData/<int:pk>/ - информация о перевале по идентификатору
+4) submitData/<int:pk>/update/ - обновление информации о перевале
+```
