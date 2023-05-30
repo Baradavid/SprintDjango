@@ -77,6 +77,9 @@ class PerevalTests(APITestCase):
             self.assertEqual(response.status_code, status.HTTP_200_OK)
             self.assertEqual(PerevalAdded.objects.get().beauty_title, 'Test Beauty Title')
 
+        def test_get_not_existing_pereval(self):
+            response = self.client.get(self.url_get)
+            self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
 
