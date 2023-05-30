@@ -37,12 +37,25 @@ class PerevalTests(APITestCase):
             'other_titles': '',
             'connect': '',
             'winter_level': '',
+            'spring_level': '',
             'summer_level': '',
             'autumn_level': '',
-            'spring_level': '',
             'coord_id': '',
             'images': [],
             'status': ''
+        }
+        self.valid_update = {
+            "user": self.user.id,
+            "beauty_title": "Updated beauty title",
+            "title": "Updated title",
+            "other_titles": "Updated other titles",
+            "connect": "Updated connect",
+            "winter_level": "Updated winter level",
+            "spring_level": "Updated spring level",
+            "summer_level": "Updated summer level",
+            "autumn_level": "Updated autumn level",
+            "coord_id": self.coord.id,
+            "status": "new"
         }
 
 
