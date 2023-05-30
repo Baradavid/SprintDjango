@@ -58,6 +58,25 @@ class PerevalTests(APITestCase):
             "status": "new"
         }
 
+        def test_get_existing_pereval(self):
+            user = self.user
+            coord = self.coord
+            pereval = PerevalAdded.objects.create(user=user,
+                                                  beauty_title='Test Beauty Title',
+                                                  title='Test Title',
+                                                  other_titles='Test Other Titles',
+                                                  connect='Test Connect',
+                                                  winter_level='Test Winter Level',
+                                                  spring_level='Test Spring Level',
+                                                  summer_level='Test Summer Level',
+                                                  autumn_level='Test Autumn Level',
+                                                  coord_id=coord,
+                                                  status='new')
+            url = reverse('getData', args=[pereval.pk])
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, status.HTTP_200_OK)
+            self.assertEqual(PerevalAdded.objects.get().beauty_title, 'Test Beauty Title')
+
 
 
 
